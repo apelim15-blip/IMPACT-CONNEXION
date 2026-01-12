@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Wifi, Monitor, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import Logo from "@/components/Logo";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
@@ -32,16 +34,19 @@ const Hero = () => {
             Divo, Côte d'Ivoire
           </motion.div>
 
-          {/* Main Heading */}
-          <motion.h1
+          {/* Logo and Heading */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl leading-tight mb-4"
+            className="mb-4"
           >
-            IMPACT{" "}
-            <span className="text-gradient">CONNEXION</span>
-          </motion.h1>
+            <Logo size="lg" showText={false} className="mb-4" />
+            <h1 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl leading-tight">
+              IMPACT{" "}
+              <span className="text-gradient">CONNEXION</span>
+            </h1>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -69,12 +74,16 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 mb-12"
           >
-            <Button size="lg" className="shadow-button text-base">
-              Découvrir nos services
-              <ArrowRight className="w-5 h-5 ml-2" />
+            <Button size="lg" className="shadow-button text-base" asChild>
+              <a href="#services">
+                Découvrir nos services
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </a>
             </Button>
-            <Button size="lg" variant="outline" className="text-base">
-              Nous contacter
+            <Button size="lg" variant="outline" className="text-base" asChild>
+              <Link to="/a-propos">
+                Qui sommes-nous ?
+              </Link>
             </Button>
           </motion.div>
 
