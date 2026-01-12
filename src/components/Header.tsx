@@ -1,18 +1,20 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/Logo";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Accueil", href: "#accueil" },
-    { name: "Services", href: "#services" },
-    { name: "Galerie", href: "#galerie" },
-    { name: "Témoignages", href: "#temoignages" },
-    { name: "Devis", href: "#devis" },
-    { name: "Contact", href: "#contact" },
+    { name: "Accueil", href: "/#accueil" },
+    { name: "Services", href: "/#services" },
+    { name: "Galerie", href: "/#galerie" },
+    { name: "À Propos", href: "/a-propos" },
+    { name: "Devis", href: "/#devis" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -20,34 +22,40 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#accueil" className="flex items-center gap-2">
-            <div className="relative w-10 h-10 md:w-12 md:h-12">
-              <div className="absolute inset-0 rounded-full border-4 border-primary" />
-              <div className="absolute top-0 right-0 w-6 h-6 md:w-7 md:h-7 border-4 border-secondary rounded-full -translate-y-1 translate-x-1" />
-            </div>
-            <span className="font-heading font-bold text-lg md:text-xl tracking-tight">
-              IMPACT <span className="text-primary">CONNEXION</span>
-            </span>
-          </a>
+          <Link to="/">
+            <Logo size="md" />
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="font-medium text-foreground/80 hover:text-primary transition-colors duration-200"
-              >
-                {link.name}
-              </a>
+              link.href.startsWith("/") && !link.href.includes("#") ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="font-medium text-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="font-medium text-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              )
             ))}
           </nav>
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="default" size="default" className="shadow-button">
-              <Phone className="w-4 h-4 mr-2" />
-              Contactez-nous
+            <Button variant="default" size="default" className="shadow-button" asChild>
+              <a href="tel:+2250556729448">
+                <Phone className="w-4 h-4 mr-2" />
+                Contactez-nous
+              </a>
             </Button>
           </div>
 
@@ -73,18 +81,31 @@ const Header = () => {
           >
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="font-medium text-foreground/80 hover:text-primary transition-colors py-2"
-                >
-                  {link.name}
-                </a>
+                link.href.startsWith("/") && !link.href.includes("#") ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+                  >
+                    {link.name}
+                  </a>
+                )
               ))}
-              <Button variant="default" className="w-full mt-2 shadow-button">
-                <Phone className="w-4 h-4 mr-2" />
-                Contactez-nous
+              <Button variant="default" className="w-full mt-2 shadow-button" asChild>
+                <a href="tel:+2250556729448">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Contactez-nous
+                </a>
               </Button>
             </nav>
           </motion.div>

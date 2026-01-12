@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
+import Logo from "@/components/Logo";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -6,18 +8,12 @@ const Footer = () => {
   return (
     <footer className="bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 rounded-full border-3 border-primary" />
-                <div className="absolute top-0 right-0 w-5 h-5 border-3 border-primary-foreground/50 rounded-full -translate-y-0.5 translate-x-0.5" />
-              </div>
-              <span className="font-heading font-bold text-lg">
-                IMPACT <span className="text-primary">CONNEXION</span>
-              </span>
-            </div>
+          <div className="md:col-span-1">
+            <Link to="/" className="inline-block mb-4">
+              <Logo size="md" />
+            </Link>
             <p className="text-secondary-foreground/70 text-sm leading-relaxed">
               La Maison De L'Intelligence Artificielle. 
               Votre partenaire numérique de confiance à Divo.
@@ -33,6 +29,18 @@ const Footer = () => {
               <li>Formation Informatique</li>
               <li>Impression Grand Format</li>
               <li>Montage Audiovisuel</li>
+            </ul>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="font-heading font-semibold text-lg mb-4">Liens Rapides</h4>
+            <ul className="space-y-2 text-sm text-secondary-foreground/70">
+              <li><a href="/#services" className="hover:text-primary transition-colors">Services</a></li>
+              <li><a href="/#galerie" className="hover:text-primary transition-colors">Galerie</a></li>
+              <li><Link to="/a-propos" className="hover:text-primary transition-colors">À Propos</Link></li>
+              <li><a href="/#devis" className="hover:text-primary transition-colors">Demander un Devis</a></li>
+              <li><a href="/#contact" className="hover:text-primary transition-colors">Contact</a></li>
             </ul>
           </div>
 

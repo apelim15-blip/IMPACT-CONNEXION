@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Users, Award, Clock } from "lucide-react";
+import { CheckCircle2, Users, Award, Clock, Target, Heart, Zap } from "lucide-react";
+import Logo from "@/components/Logo";
 
 const stats = [
   { icon: Users, value: "500+", label: "Clients satisfaits" },
@@ -66,10 +67,7 @@ const About = () => {
             {/* Stats Cards */}
             <div className="relative bg-card rounded-2xl shadow-card border border-border p-8">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 mx-auto mb-4 relative">
-                  <div className="absolute inset-0 rounded-full border-4 border-primary" />
-                  <div className="absolute top-0 right-0 w-8 h-8 border-4 border-secondary rounded-full -translate-y-1 translate-x-1" />
-                </div>
+                <Logo size="lg" showText={false} className="justify-center mb-4" />
                 <h3 className="font-heading font-bold text-2xl mb-2">
                   IMPACT CONNEXION
                 </h3>

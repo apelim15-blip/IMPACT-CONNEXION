@@ -1,12 +1,13 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle2, Loader2 } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import Logo from "@/components/Logo";
 
 const serviceOptions = [
   { id: "wifi", label: "Connexion Wi-Fi" },
@@ -147,6 +148,11 @@ const QuoteForm = () => {
           onSubmit={handleSubmit}
           className="max-w-3xl mx-auto bg-card rounded-2xl shadow-card border border-border/50 p-6 md:p-10"
         >
+          {/* Logo Header */}
+          <div className="flex justify-center mb-8">
+            <Logo size="md" />
+          </div>
+
           {/* Personal Info */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="space-y-2">
