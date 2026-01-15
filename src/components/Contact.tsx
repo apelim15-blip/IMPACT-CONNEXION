@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, Youtube, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+
+// TikTok icon component (not available in lucide-react)
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
 
 const contactInfo = [
   {
@@ -30,6 +41,30 @@ const contactInfo = [
   },
 ];
 
+const socialLinks = [
+  {
+    icon: Youtube,
+    title: "YouTube",
+    value: "@apelimendosa6313",
+    link: "https://www.youtube.com/@apelimendosa6313",
+    color: "bg-red-600",
+  },
+  {
+    icon: TikTokIcon,
+    title: "TikTok",
+    value: "@m_mendosa1",
+    link: "https://tiktok.com/@m_mendosa1",
+    color: "bg-black",
+  },
+  {
+    icon: Facebook,
+    title: "Facebook",
+    value: "Impact Connexion",
+    link: "https://web.facebook.com/Impactconexion?mibextid=ZbWKwL",
+    color: "bg-blue-600",
+  },
+];
+
 const Contact = () => {
   return (
     <section id="contact" className="py-20 md:py-28 bg-muted/30">
@@ -52,6 +87,42 @@ const Contact = () => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Notre équipe est disponible pour répondre à toutes vos questions et vous accompagner
           </p>
+        </motion.div>
+
+        {/* Social Media Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mb-12"
+        >
+          <h3 className="font-heading font-semibold text-xl text-center mb-6">
+            Suivez-nous sur les réseaux sociaux
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.title}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <Card className="shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-1 border-border/50">
+                  <CardContent className="p-4 flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-lg ${social.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <social.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm">{social.title}</p>
+                      <p className="text-xs text-muted-foreground">{social.value}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            ))}
+          </div>
         </motion.div>
 
         {/* Contact Cards */}
