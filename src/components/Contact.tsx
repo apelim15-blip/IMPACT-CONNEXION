@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, MessageCircle, Youtube, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, Youtube, Facebook, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 
 // TikTok icon component (not available in lucide-react)
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -66,6 +67,64 @@ const socialLinks = [
 ];
 
 const Contact = () => {
+  const { toast } = useToast();
+  const websiteUrl = window.location.origin;
+  const shareText = "Découvrez Impact Connexion - Services d'impression et de communication de qualité !";
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Impact Connexion",
+          text: shareText,
+          url: websiteUrl,
+        });
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') {
+          toast({
+            title: "Erreur de partage",
+            description: "Impossible de partager le site",
+            variant: "destructive",
+          });
+        }
+      }
+    } else {
+      // Fallback: copy to clipboard
+      try {
+        await navigator.clipboard.writeText(websiteUrl);
+        toast({
+          title: "Lien copié !",
+          description: "Le lien du site a été copié dans le presse-papier",
+        });
+      } catch {
+        toast({
+          title: "Erreur",
+          description: "Impossible de copier le lien",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
+  const shareOnPlatform = (platform: string) => {
+    let url = "";
+    switch (platform) {
+      case "facebook":
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(websiteUrl)}`;
+        break;
+      case "twitter":
+        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(websiteUrl)}`;
+        break;
+      case "whatsapp":
+        url = `https://wa.me/?text=${encodeURIComponent(shareText + " " + websiteUrl)}`;
+        break;
+      case "linkedin":
+        url = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(websiteUrl)}&title=${encodeURIComponent("Impact Connexion")}`;
+        break;
+    }
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section id="contact" className="py-20 md:py-28 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -122,6 +181,53 @@ const Contact = () => {
                 </Card>
               </a>
             ))}
+          </div>
+          
+          {/* Share Section */}
+          <div className="mt-8 text-center">
+            <h4 className="font-medium text-sm text-muted-foreground mb-4">
+              Partagez notre site avec vos proches
+            </h4>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleShare}
+                className="gap-2"
+              >
+                <Share2 className="w-4 h-4" />
+                Partager
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => shareOnPlatform("facebook")}
+                className="gap-2 hover:bg-blue-600 hover:text-white hover:border-blue-600"
+              >
+                <Facebook className="w-4 h-4" />
+                Facebook
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => shareOnPlatform("whatsapp")}
+                className="gap-2 hover:bg-green-600 hover:text-white hover:border-green-600"
+              >
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => shareOnPlatform("twitter")}
+                className="gap-2 hover:bg-black hover:text-white hover:border-black"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                X
+              </Button>
+            </div>
           </div>
         </motion.div>
 
