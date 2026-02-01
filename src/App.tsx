@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import AuthPage from "./pages/AuthPage";
+import ImpactTVPage from "./pages/ImpactTVPage";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -20,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
           <Route path="/a-propos" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+          <Route path="/impact-tv" element={<ProtectedRoute><ImpactTVPage /></ProtectedRoute>} />
           <Route path="/connexion" element={<AuthPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

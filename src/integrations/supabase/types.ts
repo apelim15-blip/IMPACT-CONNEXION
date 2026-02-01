@@ -80,6 +80,86 @@ export type Database = {
         }
         Relationships: []
       }
+      tv_schedule: {
+        Row: {
+          broadcast_id: string | null
+          created_at: string
+          description: string | null
+          end_time: string
+          id: string
+          start_time: string
+          title: string
+        }
+        Insert: {
+          broadcast_id?: string | null
+          created_at?: string
+          description?: string | null
+          end_time: string
+          id?: string
+          start_time: string
+          title: string
+        }
+        Update: {
+          broadcast_id?: string | null
+          created_at?: string
+          description?: string | null
+          end_time?: string
+          id?: string
+          start_time?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tv_schedule_broadcast_id_fkey"
+            columns: ["broadcast_id"]
+            isOneToOne: false
+            referencedRelation: "tv_broadcasts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tv_videos: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          duration: string | null
+          id: string
+          published_at: string | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          video_url: string
+          views_count: number | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          id?: string
+          published_at?: string | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          video_url: string
+          views_count?: number | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          id?: string
+          published_at?: string | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          video_url?: string
+          views_count?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
