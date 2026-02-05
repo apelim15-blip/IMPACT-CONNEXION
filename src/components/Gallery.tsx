@@ -8,8 +8,16 @@ import cyber1 from "@/assets/gallery/cyber-1.jpg";
 import cards1 from "@/assets/gallery/cards-1.jpg";
 import banners1 from "@/assets/gallery/banners-1.jpg";
 import badges1 from "@/assets/gallery/badges-1.jpg";
+import impactConnexionIA from "@/assets/gallery/impact-connexion-ia.png";
+import maisonAbondance from "@/assets/gallery/maison-abondance.png";
+import seminaireArcs from "@/assets/gallery/seminaire-arcs.png";
+import topjusBissap from "@/assets/gallery/topjus-bissap.png";
 
 const galleryItems = [
+  { src: impactConnexionIA, title: "Impact Connexion IA", category: "Affiche" },
+  { src: maisonAbondance, title: "La Maison de l'Abondance", category: "Bannière" },
+  { src: seminaireArcs, title: "Séminaire ARCS", category: "Affiche" },
+  { src: topjusBissap, title: "TopJus Bissap", category: "Bannière" },
   { src: printing1, title: "Impression grand format", category: "Imprimerie" },
   { src: printing2, title: "Objets personnalisés", category: "Imprimerie" },
   { src: cyber1, title: "Espace cyber café", category: "Cyber" },
