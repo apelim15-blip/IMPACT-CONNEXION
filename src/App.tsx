@@ -8,8 +8,6 @@ import AboutPage from "./pages/AboutPage";
 import AuthPage from "./pages/AuthPage";
 import ImpactTVPage from "./pages/ImpactTVPage";
 import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute";
-
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -19,9 +17,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
-          <Route path="/a-propos" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
-          <Route path="/impact-tv" element={<ProtectedRoute><ImpactTVPage /></ProtectedRoute>} />
+          <Route path="/" element={<Index />} />
+          <Route path="/a-propos" element={<AboutPage />} />
+          <Route path="/impact-tv" element={<ImpactTVPage />} />
           <Route path="/connexion" element={<AuthPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
