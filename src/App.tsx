@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import AuthPage from "./pages/AuthPage";
 import ImpactTVPage from "./pages/ImpactTVPage";
+import PaymentPage from "./pages/PaymentPage";
 import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/a-propos" element={<AboutPage />} />
           <Route path="/impact-tv" element={<ImpactTVPage />} />
+          <Route path="/paiement" element={<PaymentPage />} />
           <Route path="/connexion" element={<AuthPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
