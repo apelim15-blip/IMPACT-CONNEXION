@@ -1,1 +1,4 @@
 project_id = "mxhjfiebzllsewiozcxm"
+
+[functions.cinetpay-payment]
+verify_jwt = false
