@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, MessageCircle, Youtube, Facebook, Share2 } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, Youtube, Facebook, Share2, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -306,6 +306,17 @@ const Contact = () => {
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Message WhatsApp
+              </a>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              asChild
+            >
+              <a href="/paiement">
+                <CreditCard className="w-5 h-5 mr-2" />
+                Payer en ligne
               </a>
             </Button>
           </div>

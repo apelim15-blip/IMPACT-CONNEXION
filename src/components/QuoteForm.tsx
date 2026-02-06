@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, CheckCircle2, Loader2 } from "lucide-react";
+import { Send, CheckCircle2, Loader2, CreditCard } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -243,24 +243,38 @@ const QuoteForm = () => {
           </div>
 
           {/* Submit Button */}
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full shadow-button"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                Envoi en cours...
-              </>
-            ) : (
-              <>
-                <Send className="w-5 h-5 mr-2" />
-                Envoyer ma demande
-              </>
-            )}
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button
+              type="submit"
+              size="lg"
+              className="flex-1 shadow-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  Envoi en cours...
+                </>
+              ) : (
+                <>
+                  <Send className="w-5 h-5 mr-2" />
+                  Envoyer ma demande
+                </>
+              )}
+            </Button>
+            <Button
+              type="button"
+              size="lg"
+              variant="outline"
+              className="flex-1"
+              asChild
+            >
+              <a href="/paiement">
+                <CreditCard className="w-5 h-5 mr-2" />
+                Payer en ligne
+              </a>
+            </Button>
+          </div>
         </motion.form>
       </div>
     </section>
