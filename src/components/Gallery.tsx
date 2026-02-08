@@ -12,12 +12,32 @@ import impactConnexionIA from "@/assets/gallery/impact-connexion-ia.png";
 import maisonAbondance from "@/assets/gallery/maison-abondance.png";
 import seminaireArcs from "@/assets/gallery/seminaire-arcs.png";
 import topjusBissap from "@/assets/gallery/topjus-bissap.png";
+import socialMedia from "@/assets/gallery/social-media.jpg";
+import duoWhite1 from "@/assets/gallery/duo-white-1.jpg";
+import portraitTurban from "@/assets/gallery/portrait-turban.jpg";
+import duoWhite2 from "@/assets/gallery/duo-white-2.jpg";
+import impactStreet from "@/assets/gallery/impact-street.jpg";
+import figurine3d from "@/assets/gallery/figurine-3d.jpg";
+import portraitRed from "@/assets/gallery/portrait-red.jpg";
+import yanickApeli from "@/assets/gallery/yanick-apeli.jpg";
+import birthday from "@/assets/gallery/birthday.jpg";
+import kidPortrait from "@/assets/gallery/kid-portrait.jpg";
 
 const galleryItems = [
   { src: impactConnexionIA, title: "Impact Connexion IA", category: "Affiche" },
   { src: maisonAbondance, title: "La Maison de l'Abondance", category: "Bannière" },
   { src: seminaireArcs, title: "Séminaire ARCS", category: "Affiche" },
   { src: topjusBissap, title: "TopJus Bissap", category: "Bannière" },
+  { src: socialMedia, title: "Marketing digital", category: "Design" },
+  { src: duoWhite1, title: "Shooting corporate", category: "Photo" },
+  { src: portraitTurban, title: "Portrait studio", category: "Photo" },
+  { src: duoWhite2, title: "Shooting duo", category: "Photo" },
+  { src: impactStreet, title: "Impact Connexion terrain", category: "Branding" },
+  { src: figurine3d, title: "Figurine 3D personnalisée", category: "Impression 3D" },
+  { src: portraitRed, title: "Portrait professionnel", category: "Photo" },
+  { src: yanickApeli, title: "Montage créatif Yanick Apeli", category: "Design" },
+  { src: birthday, title: "Shooting anniversaire", category: "Photo" },
+  { src: kidPortrait, title: "Portrait enfant", category: "Photo" },
   { src: printing1, title: "Impression grand format", category: "Imprimerie" },
   { src: printing2, title: "Objets personnalisés", category: "Imprimerie" },
   { src: cyber1, title: "Espace cyber café", category: "Cyber" },
