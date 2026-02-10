@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/table";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import AdminImageUpload from "./AdminImageUpload";
 
 interface ProductForm {
   name: string;
@@ -191,8 +192,11 @@ const AdminProducts = () => {
                   <Input type="number" value={form.sort_order} onChange={(e) => setForm({ ...form, sort_order: parseInt(e.target.value) || 0 })} />
                 </div>
                 <div className="col-span-2">
-                  <Label>URL Image</Label>
-                  <Input value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} maxLength={500} placeholder="https://..." />
+                  <AdminImageUpload
+                    value={form.image_url}
+                    onChange={(url) => setForm({ ...form, image_url: url })}
+                    label="Image du produit"
+                  />
                 </div>
                 <div className="col-span-2 flex items-center gap-2">
                   <Switch checked={form.is_active} onCheckedChange={(v) => setForm({ ...form, is_active: v })} />

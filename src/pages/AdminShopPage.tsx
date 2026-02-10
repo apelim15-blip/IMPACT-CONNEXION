@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { LogOut, ShoppingBag, LayoutGrid, Package, ArrowLeft } from "lucide-react";
+import { LogOut, ShoppingBag, LayoutGrid, Package, ArrowLeft, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
@@ -8,6 +8,7 @@ import Logo from "@/components/Logo";
 import AdminCategories from "@/components/admin/AdminCategories";
 import AdminProducts from "@/components/admin/AdminProducts";
 import AdminOrders from "@/components/admin/AdminOrders";
+import AdminDashboard from "@/components/admin/AdminDashboard";
 
 const AdminShopPage = () => {
   const navigate = useNavigate();
@@ -42,8 +43,12 @@ const AdminShopPage = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="products">
+        <Tabs defaultValue="dashboard">
           <TabsList className="mb-6">
+            <TabsTrigger value="dashboard" className="gap-2">
+              <BarChart3 className="w-4 h-4" />
+              Dashboard
+            </TabsTrigger>
             <TabsTrigger value="products" className="gap-2">
               <ShoppingBag className="w-4 h-4" />
               Produits
@@ -57,6 +62,7 @@ const AdminShopPage = () => {
               Commandes
             </TabsTrigger>
           </TabsList>
+          <TabsContent value="dashboard"><AdminDashboard /></TabsContent>
           <TabsContent value="products"><AdminProducts /></TabsContent>
           <TabsContent value="categories"><AdminCategories /></TabsContent>
           <TabsContent value="orders"><AdminOrders /></TabsContent>
