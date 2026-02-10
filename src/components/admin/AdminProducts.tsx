@@ -17,6 +17,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import AdminImageUpload from "./AdminImageUpload";
+import AdminImageGallery from "./AdminImageGallery";
 
 interface ProductForm {
   name: string;
@@ -30,12 +31,13 @@ interface ProductForm {
   stock_quantity: number;
   category_id: string;
   sort_order: number;
+  images: string[];
 }
 
 const emptyForm: ProductForm = {
   name: "", slug: "", description: "", price: 0, compare_at_price: null,
   image_url: "", product_type: "physical", is_active: true, stock_quantity: 0,
-  category_id: "", sort_order: 0,
+  category_id: "", sort_order: 0, images: [],
 };
 
 const AdminProducts = () => {
@@ -74,6 +76,7 @@ const AdminProducts = () => {
         image_url: f.image_url || null, product_type: f.product_type,
         is_active: f.is_active, stock_quantity: f.stock_quantity,
         category_id: f.category_id || null, sort_order: f.sort_order,
+        images: f.images.length > 0 ? f.images : null,
       };
       if (f.id) {
         const { error } = await supabase.from("shop_products").update(payload).eq("id", f.id);
@@ -111,6 +114,7 @@ const AdminProducts = () => {
       image_url: p.image_url || "", product_type: p.product_type,
       is_active: p.is_active, stock_quantity: p.stock_quantity || 0,
       category_id: p.category_id || "", sort_order: p.sort_order || 0,
+      images: p.images || [],
     });
     setOpen(true);
   };
@@ -195,7 +199,14 @@ const AdminProducts = () => {
                   <AdminImageUpload
                     value={form.image_url}
                     onChange={(url) => setForm({ ...form, image_url: url })}
-                    label="Image du produit"
+                    label="Image principale"
+                  />
+                </div>
+                <div className="col-span-2">
+                  <AdminImageGallery
+                    images={form.images}
+                    onChange={(imgs) => setForm({ ...form, images: imgs })}
+                    label="Images supplémentaires"
                   />
                 </div>
                 <div className="col-span-2 flex items-center gap-2">

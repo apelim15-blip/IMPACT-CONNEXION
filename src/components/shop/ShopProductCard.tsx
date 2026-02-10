@@ -1,4 +1,5 @@
-import { ShoppingCart, Package, Wrench } from "lucide-react";
+import { useState } from "react";
+import { ShoppingCart, Package, Wrench, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +12,7 @@ interface Product {
   price: number;
   compare_at_price: number | null;
   image_url: string | null;
+  images?: string[] | null;
   product_type: string;
   stock_quantity: number | null;
   category?: { name: string } | null;
@@ -18,22 +20,62 @@ interface Product {
 
 const ShopProductCard = ({ product }: { product: Product }) => {
   const { addItem } = useCart();
+  const [currentImg, setCurrentImg] = useState(0);
   const isOutOfStock = product.product_type === "physical" && (product.stock_quantity ?? 0) <= 0;
   const hasDiscount = product.compare_at_price && product.compare_at_price > product.price;
+
+  const allImages = [
+    ...(product.image_url ? [product.image_url] : []),
+    ...(product.images || []),
+  ].filter(Boolean);
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("fr-FR").format(price) + " FCFA";
 
+  const prevImg = (e: React.MouseEvent) => { e.stopPropagation(); setCurrentImg((p) => (p === 0 ? allImages.length - 1 : p - 1)); };
+  const nextImg = (e: React.MouseEvent) => { e.stopPropagation(); setCurrentImg((p) => (p === allImages.length - 1 ? 0 : p + 1)); };
+
   return (
     <Card className="group overflow-hidden border-border/50 hover:shadow-elevated transition-all duration-300">
       <div className="relative aspect-square overflow-hidden bg-muted">
-        {product.image_url ? (
-          <img
-            src={product.image_url}
-            alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          />
+        {allImages.length > 0 ? (
+          <>
+            <img
+              src={allImages[currentImg]}
+              alt={product.name}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            {allImages.length > 1 && (
+              <>
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="absolute left-1.5 top-1/2 -translate-y-1/2 h-7 w-7 opacity-0 group-hover:opacity-90 transition-opacity rounded-full"
+                  onClick={prevImg}
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 h-7 w-7 opacity-0 group-hover:opacity-90 transition-opacity rounded-full"
+                  onClick={nextImg}
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+                  {allImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={(e) => { e.stopPropagation(); setCurrentImg(i); }}
+                      className={`w-1.5 h-1.5 rounded-full transition-colors ${i === currentImg ? "bg-primary" : "bg-white/60"}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </>
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             {product.product_type === "service" ? (
