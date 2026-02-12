@@ -62,12 +62,20 @@ const Header = () => {
           {/* CTA + Admin */}
           <div className="hidden md:flex items-center gap-2">
             {isAuthenticated && (
-              <Button variant="outline" size="sm" asChild>
-                <Link to="/admin/boutique">
-                  <Settings className="w-4 h-4 mr-1" />
-                  Admin
-                </Link>
-              </Button>
+              <>
+                <Button variant="outline" size="sm" asChild>
+                  <Link to="/admin/boutique">
+                    <Settings className="w-4 h-4 mr-1" />
+                    Admin Shop
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <Link to="/admin/parametres">
+                    <Settings className="w-4 h-4 mr-1" />
+                    Paramètres
+                  </Link>
+                </Button>
+              </>
             )}
             <Button variant="default" size="default" className="shadow-button" asChild>
               <a href="tel:+2250556729448">
@@ -120,14 +128,24 @@ const Header = () => {
                 )
               ))}
               {isAuthenticated && (
-                <Link
-                  to="/admin/boutique"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="font-medium text-primary hover:text-primary/80 transition-colors py-2 flex items-center gap-2"
-                >
-                  <Settings className="w-4 h-4" />
-                  Panel Admin
-                </Link>
+                <>
+                  <Link
+                    to="/admin/boutique"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="font-medium text-primary hover:text-primary/80 transition-colors py-2 flex items-center gap-2"
+                  >
+                    <Settings className="w-4 h-4" />
+                    Admin Shop
+                  </Link>
+                  <Link
+                    to="/admin/parametres"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="font-medium text-primary hover:text-primary/80 transition-colors py-2 flex items-center gap-2"
+                  >
+                    <Settings className="w-4 h-4" />
+                    Paramètres
+                  </Link>
+                </>
               )}
               <Button variant="default" className="w-full mt-2 shadow-button" asChild>
                 <a href="tel:+2250556729448">
