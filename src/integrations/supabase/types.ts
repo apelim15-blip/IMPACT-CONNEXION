@@ -327,6 +327,106 @@ export type Database = {
         }
         Relationships: []
       }
+      tournament_matches: {
+        Row: {
+          created_at: string
+          id: string
+          match_date: string
+          match_number: number
+          match_time: string
+          played: boolean
+          round: string
+          score1: number | null
+          score2: number | null
+          team1_id: string | null
+          team2_id: string | null
+          updated_at: string
+          venue: string
+          winner_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          match_date: string
+          match_number: number
+          match_time?: string
+          played?: boolean
+          round: string
+          score1?: number | null
+          score2?: number | null
+          team1_id?: string | null
+          team2_id?: string | null
+          updated_at?: string
+          venue?: string
+          winner_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          match_date?: string
+          match_number?: number
+          match_time?: string
+          played?: boolean
+          round?: string
+          score1?: number | null
+          score2?: number | null
+          team1_id?: string | null
+          team2_id?: string | null
+          updated_at?: string
+          venue?: string
+          winner_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tournament_matches_team1_id_fkey"
+            columns: ["team1_id"]
+            isOneToOne: false
+            referencedRelation: "tournament_teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tournament_matches_team2_id_fkey"
+            columns: ["team2_id"]
+            isOneToOne: false
+            referencedRelation: "tournament_teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tournament_matches_winner_id_fkey"
+            columns: ["winner_id"]
+            isOneToOne: false
+            referencedRelation: "tournament_teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tournament_teams: {
+        Row: {
+          created_at: string
+          group_name: string | null
+          id: string
+          logo_url: string | null
+          name: string
+          seed_number: number
+        }
+        Insert: {
+          created_at?: string
+          group_name?: string | null
+          id?: string
+          logo_url?: string | null
+          name: string
+          seed_number: number
+        }
+        Update: {
+          created_at?: string
+          group_name?: string | null
+          id?: string
+          logo_url?: string | null
+          name?: string
+          seed_number?: number
+        }
+        Relationships: []
+      }
       tv_broadcasts: {
         Row: {
           created_at: string
