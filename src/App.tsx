@@ -13,6 +13,7 @@ import ShopPage from "./pages/ShopPage";
 import AdminShopPage from "./pages/AdminShopPage";
 import AdminSettingsPage from "./pages/AdminSettingsPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import TournamentPage from "./pages/TournamentPage";
 import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/boutique" element={<ShopPage />} />
             <Route path="/admin/boutique" element={<ProtectedRoute><AdminShopPage /></ProtectedRoute>} />
             <Route path="/admin/parametres" element={<ProtectedRoute><AdminSettingsPage /></ProtectedRoute>} />
+            <Route path="/tournoi" element={<TournamentPage />} />
             <Route path="/connexion" element={<AuthPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
