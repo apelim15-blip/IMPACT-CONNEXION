@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Logo from "@/components/Logo";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const Hero = () => {
   return (
