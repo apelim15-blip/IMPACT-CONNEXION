@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/hooks/useCart";
+import { getProductFallbackImage } from "@/lib/shopImages";
 
 interface Product {
   id: string;
   name: string;
+  slug?: string;
   description: string | null;
   price: number;
   compare_at_price: number | null;
