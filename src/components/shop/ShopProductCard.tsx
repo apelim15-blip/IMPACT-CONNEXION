@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/hooks/useCart";
+import { getProductFallbackImage } from "@/lib/shopImages";
 
 interface Product {
   id: string;
   name: string;
+  slug?: string;
   description: string | null;
   price: number;
   compare_at_price: number | null;
@@ -24,9 +26,11 @@ const ShopProductCard = ({ product }: { product: Product }) => {
   const isOutOfStock = product.product_type === "physical" && (product.stock_quantity ?? 0) <= 0;
   const hasDiscount = product.compare_at_price && product.compare_at_price > product.price;
 
+  const fallbackImg = product.slug ? getProductFallbackImage(product.slug) : undefined;
   const allImages = [
     ...(product.image_url ? [product.image_url] : []),
     ...(product.images || []),
+    ...(!product.image_url && !(product.images?.length) && fallbackImg ? [fallbackImg] : []),
   ].filter(Boolean);
 
   const formatPrice = (price: number) =>
