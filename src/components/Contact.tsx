@@ -246,7 +246,7 @@ const Contact = () => {
         >
           <div className="flex items-center justify-center gap-2 text-primary-foreground/80 mb-4">
             <Clock className="w-5 h-5" />
-            <span>Ouvert tous les jours de 8h à 21h</span>
+            <span>{hours}</span>
           </div>
           <h3 className="font-heading font-bold text-2xl md:text-3xl text-primary-foreground mb-4">
             Besoin d'un service urgent ?
