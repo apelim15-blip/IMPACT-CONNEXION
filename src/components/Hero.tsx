@@ -66,8 +66,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg text-muted-foreground mb-8 max-w-xl"
           >
-            Votre partenaire de confiance pour tous vos besoins numériques : 
-            cyber café, services informatiques et imprimerie professionnelle.
+            {get("site_description", "Votre partenaire de confiance pour tous vos besoins numériques : cyber café, services informatiques et imprimerie professionnelle.")}
           </motion.p>
 
           {/* CTA Buttons */}
