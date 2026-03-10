@@ -45,8 +45,9 @@ const Hero = () => {
           >
             <Logo size="lg" showText={false} className="mb-4" />
             <h1 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl leading-tight">
-              IMPACT{" "}
-              <span className="text-gradient">CONNEXION</span>
+              {get("site_name", "IMPACT CONNEXION").split(" ").map((word, i, arr) => 
+                i === arr.length - 1 ? <span key={i} className="text-gradient">{word}</span> : <>{word}{" "}</>
+              )}
             </h1>
           </motion.div>
 
