@@ -11,18 +11,17 @@ import charteGraphique from "@/assets/shop/charte-graphique.jpg";
 import communityManagement from "@/assets/shop/community-management.jpg";
 import siteWeb from "@/assets/shop/site-web.jpg";
 
-// Map product slugs or name keywords to local images as fallback
 const shopImageMap: Record<string, string> = {
-  "carte-de-visite-premium": carteVisite,
-  "flyers-a5-pack-1000": flyersA5,
-  "banniere-roll-up": banniereRollup,
-  "t-shirt-personnalise": tshirt,
+  "carte-visite-premium": carteVisite,
+  "flyers-a5": flyersA5,
+  "banniere-rollup": banniereRollup,
+  "tshirt-personnalise": tshirt,
   "mug-personnalise": mug,
-  "porte-cles-personnalise": porteCles,
+  "porte-cles": porteCles,
   "seance-photo-portrait": photoPortrait,
   "shooting-corporate": shootingCorporate,
-  "creation-de-logo": creationLogo,
-  "charte-graphique-complete": charteGraphique,
+  "creation-logo": creationLogo,
+  "charte-graphique": charteGraphique,
   "community-management": communityManagement,
   "site-web-vitrine": siteWeb,
 };
