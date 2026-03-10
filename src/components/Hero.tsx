@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Logo from "@/components/Logo";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const Hero = () => {
+  const { get } = useSiteSettings();
   return (
     <section
       id="accueil"
@@ -43,8 +45,9 @@ const Hero = () => {
           >
             <Logo size="lg" showText={false} className="mb-4" />
             <h1 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl leading-tight">
-              IMPACT{" "}
-              <span className="text-gradient">CONNEXION</span>
+              {get("site_name", "IMPACT CONNEXION").split(" ").map((word, i, arr) => 
+                i === arr.length - 1 ? <span key={i} className="text-gradient">{word}</span> : <>{word}{" "}</>
+              )}
             </h1>
           </motion.div>
 
@@ -54,7 +57,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="font-heading font-semibold text-xl md:text-2xl text-muted-foreground mb-6"
           >
-            La Maison De L'Intelligence Artificielle
+            {get("site_tagline", "La Maison De L'Intelligence Artificielle")}
           </motion.p>
 
           <motion.p
@@ -63,8 +66,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg text-muted-foreground mb-8 max-w-xl"
           >
-            Votre partenaire de confiance pour tous vos besoins numériques : 
-            cyber café, services informatiques et imprimerie professionnelle.
+            {get("site_description", "Votre partenaire de confiance pour tous vos besoins numériques : cyber café, services informatiques et imprimerie professionnelle.")}
           </motion.p>
 
           {/* CTA Buttons */}

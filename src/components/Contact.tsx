@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Youtube, Facebook, Share2, CreditCard } from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -15,61 +16,32 @@ const TikTokIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const contactInfo = [
-  {
-    icon: Phone,
-    title: "Téléphone",
-    value: "+225 05 56 72 94 48",
-    link: "tel:+2250556729448",
-  },
-  {
-    icon: MessageCircle,
-    title: "WhatsApp",
-    value: "+225 05 56 72 94 48",
-    link: "https://wa.me/2250556729448",
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    value: "impactconnexion078@gmail.com",
-    link: "mailto:impactconnexion078@gmail.com",
-  },
-  {
-    icon: MapPin,
-    title: "Adresse",
-    value: "Divo, Konankro en face de l'Eglise AD SMYRNE",
-    link: "#",
-  },
-];
-
-const socialLinks = [
-  {
-    icon: Youtube,
-    title: "YouTube",
-    value: "@apelimendosa6313",
-    link: "https://www.youtube.com/@apelimendosa6313",
-    color: "bg-red-600",
-  },
-  {
-    icon: TikTokIcon,
-    title: "TikTok",
-    value: "@m_mendosa1",
-    link: "https://tiktok.com/@m_mendosa1",
-    color: "bg-black",
-  },
-  {
-    icon: Facebook,
-    title: "Facebook",
-    value: "Impact Connexion",
-    link: "https://web.facebook.com/Impactconexion?mibextid=ZbWKwL",
-    color: "bg-blue-600",
-  },
-];
-
 const Contact = () => {
   const { toast } = useToast();
+  const { get } = useSiteSettings();
   const websiteUrl = window.location.origin;
-  const shareText = "Découvrez Impact Connexion - Services d'impression et de communication de qualité !";
+  const shareText = `Découvrez ${get("site_name", "Impact Connexion")} - Services d'impression et de communication de qualité !`;
+
+  const phone = get("contact_phone", "+225 05 56 72 94 48");
+  const phoneClean = phone.replace(/\s+/g, "");
+  const whatsapp = get("contact_whatsapp", phone);
+  const whatsappClean = whatsapp.replace(/\s+/g, "");
+  const email = get("contact_email", "impactconnexion078@gmail.com");
+  const address = get("contact_address", "Divo, Konankro en face de l'Eglise AD SMYRNE");
+  const hours = get("contact_hours", "Ouvert tous les jours de 8h à 21h");
+
+  const contactInfo = [
+    { icon: Phone, title: "Téléphone", value: phone, link: `tel:${phoneClean}` },
+    { icon: MessageCircle, title: "WhatsApp", value: whatsapp, link: `https://wa.me/${whatsappClean}` },
+    { icon: Mail, title: "Email", value: email, link: `mailto:${email}` },
+    { icon: MapPin, title: "Adresse", value: address, link: "#" },
+  ];
+
+  const socialLinks = [
+    { icon: Youtube, title: "YouTube", value: get("social_youtube", "@apelimendosa6313"), link: get("social_youtube", "").startsWith("http") ? get("social_youtube") : `https://www.youtube.com/${get("social_youtube", "@apelimendosa6313")}`, color: "bg-red-600" },
+    { icon: TikTokIcon, title: "TikTok", value: get("social_tiktok", "@m_mendosa1"), link: get("social_tiktok", "").startsWith("http") ? get("social_tiktok") : `https://tiktok.com/${get("social_tiktok", "@m_mendosa1")}`, color: "bg-black" },
+    { icon: Facebook, title: "Facebook", value: get("site_name", "Impact Connexion"), link: get("social_facebook", "https://web.facebook.com/Impactconexion"), color: "bg-blue-600" },
+  ].filter(s => s.value);
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -274,7 +246,7 @@ const Contact = () => {
         >
           <div className="flex items-center justify-center gap-2 text-primary-foreground/80 mb-4">
             <Clock className="w-5 h-5" />
-            <span>Ouvert tous les jours de 8h à 21h</span>
+            <span>{hours}</span>
           </div>
           <h3 className="font-heading font-bold text-2xl md:text-3xl text-primary-foreground mb-4">
             Besoin d'un service urgent ?
@@ -288,7 +260,7 @@ const Contact = () => {
               className="bg-primary-foreground text-secondary hover:bg-primary-foreground/90"
               asChild
             >
-              <a href="tel:+2250556729448">
+              <a href={`tel:${phoneClean}`}>
                 <Phone className="w-5 h-5 mr-2" />
                 Appeler maintenant
               </a>
@@ -300,7 +272,7 @@ const Contact = () => {
               asChild
             >
               <a
-                href="https://wa.me/2250556729448"
+                href={`https://wa.me/${whatsappClean}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

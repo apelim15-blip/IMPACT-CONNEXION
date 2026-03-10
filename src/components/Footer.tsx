@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Logo from "@/components/Logo";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { get } = useSiteSettings();
+
+  const phone = get("contact_phone", "+225 05 56 72 94 48");
+  const email = get("contact_email", "impactconnexion078@gmail.com");
+  const address = get("contact_address", "Divo, Konankro en face de l'Eglise AD SMYRNE");
+  const siteName = get("site_name", "Impact Connexion");
+  const siteTagline = get("site_tagline", "La Maison De L'Intelligence Artificielle");
+  const siteDescription = get("site_description", "Votre partenaire numérique de confiance à Divo.");
 
   return (
     <footer className="bg-secondary text-secondary-foreground">
@@ -15,8 +24,7 @@ const Footer = () => {
               <Logo size="md" />
             </Link>
             <p className="text-secondary-foreground/70 text-sm leading-relaxed">
-              La Maison De L'Intelligence Artificielle. 
-              Votre partenaire numérique de confiance à Divo.
+              {siteTagline}. {siteDescription}
             </p>
           </div>
 
@@ -50,15 +58,15 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-secondary-foreground/70">
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 text-primary mt-0.5" />
-                <span>+225 05 56 72 94 48</span>
+                <span>{phone}</span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 text-primary mt-0.5" />
-                <span>impactconnexion078@gmail.com</span>
+                <span>{email}</span>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-primary mt-0.5" />
-                <span>Divo, Konankro en face de l'Eglise AD SMYRNE</span>
+                <span>{address}</span>
               </li>
             </ul>
           </div>
@@ -66,7 +74,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-secondary-foreground/10 text-center text-sm text-secondary-foreground/60">
-          <p>© {currentYear} Impact Connexion. Tous droits réservés.</p>
+          <p>© {currentYear} {siteName}. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
