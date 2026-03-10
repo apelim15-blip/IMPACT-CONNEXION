@@ -7,6 +7,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const Hero = () => {
+  const { get } = useSiteSettings();
   return (
     <section
       id="accueil"
