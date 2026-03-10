@@ -57,7 +57,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="font-heading font-semibold text-xl md:text-2xl text-muted-foreground mb-6"
           >
-            La Maison De L'Intelligence Artificielle
+            {get("site_tagline", "La Maison De L'Intelligence Artificielle")}
           </motion.p>
 
           <motion.p
