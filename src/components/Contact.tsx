@@ -260,7 +260,7 @@ const Contact = () => {
               className="bg-primary-foreground text-secondary hover:bg-primary-foreground/90"
               asChild
             >
-              <a href="tel:+2250556729448">
+              <a href={`tel:${phoneClean}`}>
                 <Phone className="w-5 h-5 mr-2" />
                 Appeler maintenant
               </a>
