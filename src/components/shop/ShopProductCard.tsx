@@ -26,9 +26,11 @@ const ShopProductCard = ({ product }: { product: Product }) => {
   const isOutOfStock = product.product_type === "physical" && (product.stock_quantity ?? 0) <= 0;
   const hasDiscount = product.compare_at_price && product.compare_at_price > product.price;
 
+  const fallbackImg = product.slug ? getProductFallbackImage(product.slug) : undefined;
   const allImages = [
     ...(product.image_url ? [product.image_url] : []),
     ...(product.images || []),
+    ...(!product.image_url && !(product.images?.length) && fallbackImg ? [fallbackImg] : []),
   ].filter(Boolean);
 
   const formatPrice = (price: number) =>
