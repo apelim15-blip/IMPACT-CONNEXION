@@ -272,7 +272,7 @@ const Contact = () => {
               asChild
             >
               <a
-                href="https://wa.me/2250556729448"
+                href={`https://wa.me/${whatsappClean}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
